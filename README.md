@@ -7,15 +7,18 @@ You will be working with a Fines Management system that consists of a .NET API b
 ### What You Need to Do
 
 1. **Fork and Clone**
+
    - Fork this repository to your own GitHub account
    - Clone your fork locally to begin work
 
 2. **Frontend Implementation** (React/TypeScript)
+
    - Implement filter components/controls (e.g., filter by fine type, date range, customer name, etc.)
    - React to filter changes, make a request to the API and update the UI accordingly
    - Add additional column requested in the task.
 
 3. **Backend Implementation** (.NET/C#)
+
    - Implement API endpoint(s) to accept filter parameters
    - Query the Entity Framework repository with the filters
    - Ensure proper response structure and status codes
@@ -25,7 +28,8 @@ You will be working with a Fines Management system that consists of a .NET API b
    - Ensure all code is committed and the repository is public (or accessible to reviewers)
 
 ## Your Task
-Extend and modify the API/frontend, to include the follwing based on the below critera:
+
+Extend and modify the API/frontend, to include the following based on the below criteria:
 
 ### Additional Columns
 
@@ -48,11 +52,12 @@ Extend and modify the API/frontend, to include the follwing based on the below c
 
 ### Running the API/Front End
 
-Each application has a respective readme, Please see the Fines.Api and Fines.Client folders. 
+Each application has a respective readme, Please see the Fines.Api and Fines.Client folders.
 
 ## Technologies Used
 
 ### Backend
+
 - **[ASP.NET Core 8.0](https://learn.microsoft.com/en-us/aspnet/core/?view=aspnetcore-8.0)** - Web API framework
 - **[Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/)** - ORM and data access
 - **[In-Memory Database](https://learn.microsoft.com/en-us/ef/core/providers/in-memory/)** - For development/testing
@@ -60,6 +65,7 @@ Each application has a respective readme, Please see the Fines.Api and Fines.Cli
 - **[xUnit](https://xunit.net/)** - Testing framework
 
 ### Frontend
+
 - **[Mantine Documentation](https://mantine.dev/)**
 - **[Vite Documentation](https://vitejs.dev/)**
 - **[React Documentation](https://react.dev/)**
@@ -69,9 +75,7 @@ Each application has a respective readme, Please see the Fines.Api and Fines.Cli
 Once you've completed the task:
 
 1. Ensure all your changes are committed
-
 2. Push to your forked repository
-
 3. Share the link to your repository with the interviewer
 
 ## Questions?
