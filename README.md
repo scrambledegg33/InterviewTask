@@ -13,6 +13,7 @@ You will be working with a Fines Management system that consists of a .NET API b
 2. **Frontend Implementation** (React/TypeScript)
    - Implement filter components/controls (e.g., filter by fine type, date range, customer name, etc.)
    - React to filter changes, make a request to the API and update the UI accordingly
+   - Add additional column requested in the task.
 
 3. **Backend Implementation** (.NET/C#)
    - Implement API endpoint(s) to accept filter parameters
@@ -43,7 +44,7 @@ Extend and modify the API/frontend, to include the follwing based on the below c
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 - [Node.js](https://nodejs.org/) (v18 or later)
 - [Git](https://git-scm.com/)
-- Code editor ([Visual Studio/Visual Studio Community](https://visualstudio.microsoft.com/vs/) or [VS Code](https://code.visualstudio.com/))
+- Code editor IDE of your choice. What we use in house: ([Visual Studio](https://visualstudio.microsoft.com/vs/) or [VS Code](https://code.visualstudio.com/))
 
 ### Running the API/Front End
 
