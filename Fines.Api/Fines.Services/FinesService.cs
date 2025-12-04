@@ -1,13 +1,7 @@
 ﻿using Fines.Core.Dtos;
-using Fines.Data;
 using Fines.Data.Models;
 
 namespace Fines.Services;
-
-public interface IFinesService
-{
-    Task<IEnumerable<FinesResponse>> GetFinesAsync();
-}
 
 public class FinesService : IFinesService
 {

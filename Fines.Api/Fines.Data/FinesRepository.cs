@@ -3,11 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Fines.Data;
 
-public interface IFinesRepository
-{
-    Task<IEnumerable<FinesEntity>> GetAllFinesAsync();
-}
-
 public class FinesRepository : IFinesRepository
 {
     private readonly FinesDbContext _context;

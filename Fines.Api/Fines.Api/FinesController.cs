@@ -1,11 +1,10 @@
 ﻿using Fines.Core.Dtos;
-using Fines.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Fines.Api.Controllers;
+namespace Fines.Api;
 
-[ApiController]
 [Route("api/[controller]")]
+[ApiController]
 public class FinesController : ControllerBase
 {
     private readonly IFinesService _finesService;
