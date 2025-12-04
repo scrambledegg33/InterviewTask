@@ -17,13 +17,13 @@ export default function Index() {
     ];
 
     const rows = fines.map((fine) => (
-        <Table.Tr key={fine.fineRef}>
-            <Table.Td>{fine.fineRef}</Table.Td>
+        <Table.Tr key={fine.id}>
+            <Table.Td>{fine.fineNo}</Table.Td>
             <Table.Td>{fine.fineDate.toLocaleDateString()}</Table.Td>
             <Table.Td>{FineTypeLabels[fine.fineType]}</Table.Td>
             <Table.Td>{fine.customerName}</Table.Td>
-            <Table.Td>{fine.vehicleReg}</Table.Td>
-            <Table.Td>{fine.driverName}</Table.Td>
+            <Table.Td>{fine.vehicleRegNo}</Table.Td>
+            <Table.Td>{fine.vehicleDriverName}</Table.Td>
         </Table.Tr>
     ));
 
@@ -60,12 +60,12 @@ export default function Index() {
                     <Table>
                         <Table.Thead>
                             <Table.Tr>
-                                <Table.Th>Reference</Table.Th>
-                                <Table.Th>Date</Table.Th>
-                                <Table.Th>Type</Table.Th>
+                                <Table.Th>Fine Number</Table.Th>
+                                <Table.Th>Fine Date</Table.Th>
+                                <Table.Th>Fine Type</Table.Th>
                                 <Table.Th>Customer</Table.Th>
-                                <Table.Th>Registration</Table.Th>
-                                <Table.Th>Driver</Table.Th>
+                                <Table.Th>Vehicle Registration</Table.Th>
+                                <Table.Th>Vehicle Driver Name</Table.Th>
                             </Table.Tr>
                         </Table.Thead>
                         <Table.Tbody>{rows}</Table.Tbody>
