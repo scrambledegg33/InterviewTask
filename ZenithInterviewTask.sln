@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fines.Data", "Fines.Api\Fin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fines.Core", "Fines.Api\Fines.Core\Fines.Core.csproj", "{F48F7CFB-1349-4E7F-89C0-30C895DD89B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fines.Tests", "Fines.Tests\Fines.Tests.csproj", "{50CCE1CC-F590-49CE-A2F4-5995531A11F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fines.Tests", "Fines.Api\Fines.Tests\Fines.Tests.csproj", "{50CCE1CC-F590-49CE-A2F4-5995531A11F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
