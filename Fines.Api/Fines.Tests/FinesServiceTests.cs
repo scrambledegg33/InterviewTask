@@ -26,12 +26,54 @@ namespace Fines.Tests
 
             // Act
             var result = await _service.GetFinesAsync();
+            var finesList = result.ToList();
 
             // Assert
-            var finesList = result.ToList();
             Assert.NotNull(finesList);
-            Assert.Equal(3, finesList.Count);
+            Assert.Equal(5, finesList.Count);
         }
+
+        [Theory]
+        [InlineData(FineType.Speeding)]
+        [InlineData(FineType.RedLightViolation)]
+        public async Task GetFinesFilteredByFineTypeAsync_WhenCalled_ReturnsAllFinesOfAGivenFineType(FineType fineType)
+        {
+            // Arrange
+            var finesEntities = GetSampleFinesEntities();
+            _mockRepository.Setup(repo => repo.GetFinesFilteredByFineTypeAsync(fineType))
+                .ReturnsAsync((FineType ft) => finesEntities.Where(f => f.FineType == ft).ToList());
+
+            // Act
+            var result = await _service.GetFinesFilteredByFineTypeAsync(fineType);
+            var finesList = result.ToList();
+
+            // Assert
+            Assert.NotNull(finesList);
+            Assert.All(finesList, f => Assert.Equal(fineType, f.FineType));
+            var expectedCount = finesEntities.Count(f => f.FineType == fineType);
+            Assert.Equal(expectedCount, finesList.Count);
+        }
+
+        //[Theory]
+        //[InlineData(FineType.Speeding)]
+        //[InlineData(FineType.RedLightViolation)]
+        //public async Task GetFinesFilteredByFineTypeAsync_WhenFinesListNull_Returns404NotFound(FineType fineType)
+        //{
+        //    // Arrange
+        //    var finesEntities = GetSampleFinesEntities();
+        //    _mockRepository.Setup(repo => repo.GetFinesFilteredByFineTypeAsync(fineType))
+        //        .ReturnsAsync((IEnumerable<FinesEntity>?)null);
+
+        //    // Act
+        //    var result = await _service.GetFinesFilteredByFineTypeAsync(fineType);
+        //    var finesList = result.ToList();
+
+        //    // Assert
+        //    Assert.NotNull(finesList);
+        //    Assert.All(finesList, f => Assert.Equal(fineType, f.FineType));
+        //    var expectedCount = finesEntities.Count(f => f.FineType == fineType);
+        //    Assert.Equal(expectedCount, finesList.Count);
+        //}
 
         [Fact]
         public async Task GetFinesAsync_WhenCalled_CallsRepositoryOnce()
@@ -144,6 +186,18 @@ namespace Fines.Tests
             await Assert.ThrowsAsync<Exception>(() => _service.GetFinesAsync());
         }
 
+        [Fact]
+        public async Task GetFinesFilteredByFineTypeAsync_WhenRepositoryThrowsException_PropagatesException()
+        {
+            // Arrange
+            FineType fineType = FineType.Speeding;
+            _mockRepository.Setup(repo => repo.GetFinesFilteredByFineTypeAsync(fineType))
+                .ThrowsAsync(new Exception("Database error"));
+
+            // Act & Assert
+            await Assert.ThrowsAsync<Exception>(() => _service.GetFinesFilteredByFineTypeAsync(fineType));
+        }
+
         private static List<FinesEntity> GetSampleFinesEntities()
         {
             return new List<FinesEntity>
@@ -177,6 +231,26 @@ namespace Fines.Tests
                     VehicleId = 3,
                     Vehicle = new VehicleEntity { Id = 3, RegistrationNumber = "DEF456", Make = "BMW", Model = "3 Series", Color = "Black", Year = 2022 },
                     VehicleDriverName = "Bob Johnson"
+                },
+                new FinesEntity
+                {
+                    Id = 4,
+                    FineNo = "FN-004",
+                    FineDate = new DateTime(2024, 1, 23),
+                    FineType = FineType.SeatBeltViolation,
+                    VehicleId = 4,
+                    Vehicle = new VehicleEntity { Id = 4, RegistrationNumber = "RRR111", Make = "Honda", Model = "Jazz", Color = "White", Year = 2012 },
+                    VehicleDriverName = "Ryan Jones"
+                },
+                new FinesEntity
+                {
+                    Id = 5,
+                    FineNo = "FN-005",
+                    FineDate = new DateTime(2024, 2, 10),
+                    FineType = FineType.Speeding,
+                    VehicleId = 5,
+                    Vehicle = new VehicleEntity { Id = 5, RegistrationNumber = "WER789", Make = "Dacia", Model = "Sandero", Color = "Gold", Year = 2023 },
+                    VehicleDriverName = "Jeff Baker"
                 }
             };
         }

@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Api\\Fines.Api.csproj": {}
+    "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Api\\Fines.Api.csproj": {}
   },
   "projects": {
-    "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Api\\Fines.Api.csproj": {
+    "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Api\\Fines.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Api\\Fines.Api.csproj",
+        "projectUniqueName": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Api\\Fines.Api.csproj",
         "projectName": "Fines.Api",
-        "projectPath": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Api\\Fines.Api.csproj",
-        "packagesPath": "C:\\Users\\ben.rowe\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Api\\obj\\",
+        "projectPath": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Api\\Fines.Api.csproj",
+        "packagesPath": "C:\\Users\\henry.grainger\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ben.rowe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\henry.grainger\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,15 +25,15 @@
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Services\\Fines.Services.csproj": {
-                "projectPath": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Services\\Fines.Services.csproj"
+              "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Services\\Fines.Services.csproj": {
+                "projectPath": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Services\\Fines.Services.csproj"
               }
             }
           }
@@ -87,21 +86,20 @@
         }
       }
     },
-    "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj": {
+    "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj",
+        "projectUniqueName": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj",
         "projectName": "Fines.Core",
-        "projectPath": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj",
-        "packagesPath": "C:\\Users\\ben.rowe\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Core\\obj\\",
+        "projectPath": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj",
+        "packagesPath": "C:\\Users\\henry.grainger\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ben.rowe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\henry.grainger\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -109,7 +107,7 @@
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -153,21 +151,20 @@
         }
       }
     },
-    "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Data\\Fines.Data.csproj": {
+    "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Data\\Fines.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Data\\Fines.Data.csproj",
+        "projectUniqueName": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Data\\Fines.Data.csproj",
         "projectName": "Fines.Data",
-        "projectPath": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Data\\Fines.Data.csproj",
-        "packagesPath": "C:\\Users\\ben.rowe\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Data\\obj\\",
+        "projectPath": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Data\\Fines.Data.csproj",
+        "packagesPath": "C:\\Users\\henry.grainger\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ben.rowe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\henry.grainger\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -175,15 +172,15 @@
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj": {
-                "projectPath": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj"
+              "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj": {
+                "projectPath": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj"
               }
             }
           }
@@ -233,21 +230,20 @@
         }
       }
     },
-    "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Services\\Fines.Services.csproj": {
+    "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Services\\Fines.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Services\\Fines.Services.csproj",
+        "projectUniqueName": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Services\\Fines.Services.csproj",
         "projectName": "Fines.Services",
-        "projectPath": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Services\\Fines.Services.csproj",
-        "packagesPath": "C:\\Users\\ben.rowe\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Services\\obj\\",
+        "projectPath": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Services\\Fines.Services.csproj",
+        "packagesPath": "C:\\Users\\henry.grainger\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ben.rowe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\henry.grainger\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -255,18 +251,18 @@
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj": {
-                "projectPath": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj"
+              "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj": {
+                "projectPath": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Core\\Fines.Core.csproj"
               },
-              "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Data\\Fines.Data.csproj": {
-                "projectPath": "C:\\Development\\Coding Excercise\\ZenithInterviewTask\\Fines.Api\\Fines.Data\\Fines.Data.csproj"
+              "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Data\\Fines.Data.csproj": {
+                "projectPath": "C:\\Users\\henry.grainger\\Source\\Repos\\InterviewTask\\Fines.Api\\Fines.Data\\Fines.Data.csproj"
               }
             }
           }
