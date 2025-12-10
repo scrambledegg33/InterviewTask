@@ -25,6 +25,12 @@ public class FinesDbContext : DbContext
             .HasForeignKey(f => f.VehicleId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<FinesEntity>()
+            .HasOne<CustomerEntity>()
+            .WithMany()
+            .HasForeignKey(f => f.CustomerId)
+            .OnDelete(DeleteBehavior.Restrict);
+
         // Seed data
         modelBuilder.Entity<VehicleEntity>().HasData(VehicleSeedData.GetSeedData());
         modelBuilder.Entity<CustomerEntity>().HasData(CustomerSeedData.GetSeedData());

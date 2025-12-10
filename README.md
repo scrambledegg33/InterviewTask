@@ -29,17 +29,21 @@ You will be working with a Fines Management system that consists of a .NET API b
 
 ## Your Task
 
-Extend and modify the API/frontend, to include the following based on the below criteria:
+Extend and modify the API and frontend, to include the following:
 
 ### Additional Columns
 
-1. Customer Name
+Add the following column to the existing table of fines on the front end:
+
+**Customer Name** - The first and last name of the customer who received the fine.
 
 ### Filters
 
-1. Fine Date - Date Picker
-2. Fine Type - Drop Down
-3. Vehicle Registration - Free text
+Implement filters on the front end to allow users to filter fines on the following fields:
+
+1. **Fine Date** - Date picker
+2. **Fine Type** - Drop down / Select
+3. **Vehicle Registration** - Free text
 
 ## Getting Started
 

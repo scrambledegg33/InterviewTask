@@ -13,4 +13,7 @@ public class FinesEntity
     // Vehicle relationship
     public int VehicleId { get; set; }
     public VehicleEntity Vehicle { get; set; } = null!;
+
+    // Customer relationship
+    public int CustomerId { get; set; }
 }
