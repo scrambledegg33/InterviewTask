@@ -1,3 +1,4 @@
+using Fines.Core.Dtos;
 using Fines.Core.Enums;
 using Fines.Data.Models;
 using Fines.Services;
@@ -21,7 +22,7 @@ namespace Fines.Tests
         {
             // Arrange
             var finesEntities = GetSampleFinesEntities();
-            _mockRepository.Setup(repo => repo.GetAllFinesAsync())
+            _mockRepository.Setup(repo => repo.GetFinesAsync(null))
                 .ReturnsAsync(finesEntities);
 
             // Act
@@ -40,11 +41,11 @@ namespace Fines.Tests
         {
             // Arrange
             var finesEntities = GetSampleFinesEntities();
-            _mockRepository.Setup(repo => repo.GetFinesFilteredByFineTypeAsync(fineType))
-                .ReturnsAsync((FineType ft) => finesEntities.Where(f => f.FineType == ft).ToList());
-
+            _mockRepository.Setup(repo => repo.GetFinesAsync(It.Is<FinesFilter>(f => f != null && f.FineType == fineType)))
+                .ReturnsAsync((FinesFilter? filter) => finesEntities.Where(f => f.FineType == filter!.FineType).ToList());
+            var filter = new FinesFilter { FineType = fineType };
             // Act
-            var result = await _service.GetFinesFilteredByFineTypeAsync(fineType);
+            var result = await _service.GetFinesAsync(filter);
             var finesList = result.ToList();
 
             // Assert
@@ -55,14 +56,14 @@ namespace Fines.Tests
         }
 
         //[Theory]
-        //[InlineData(FineType.Speeding)]
-        //[InlineData(FineType.RedLightViolation)]
-        //public async Task GetFinesFilteredByFineTypeAsync_WhenFinesListNull_Returns404NotFound(FineType fineType)
+        //[InlineData("RERG334")]
+        //public async Task GetFinesAsync_WhenVehicleRegIsNotValid_Returns404NotFound(string vehicleReg)
         //{
         //    // Arrange
         //    var finesEntities = GetSampleFinesEntities();
-        //    _mockRepository.Setup(repo => repo.GetFinesFilteredByFineTypeAsync(fineType))
-        //        .ReturnsAsync((IEnumerable<FinesEntity>?)null);
+        //    _mockRepository.Setup(repo => repo.GetFinesAsync(It.Is<FinesFilter>(f => f != null && f.VehicleReg == vehicleReg)))
+        //        .ReturnsAsync([]);
+        //    var filter = new FinesFilter { FineType = fineType };
 
         //    // Act
         //    var result = await _service.GetFinesFilteredByFineTypeAsync(fineType);
@@ -80,14 +81,14 @@ namespace Fines.Tests
         {
             // Arrange
             var finesEntities = GetSampleFinesEntities();
-            _mockRepository.Setup(repo => repo.GetAllFinesAsync())
+            _mockRepository.Setup(repo => repo.GetFinesAsync(null))
                 .ReturnsAsync(finesEntities);
 
             // Act
             await _service.GetFinesAsync();
 
             // Assert
-            _mockRepository.Verify(repo => repo.GetAllFinesAsync(), Times.Once);
+            _mockRepository.Verify(repo => repo.GetFinesAsync(null), Times.Once);
         }
 
         [Fact]
@@ -117,7 +118,7 @@ namespace Fines.Tests
                     VehicleDriverName = "John Doe"
                 }
             };
-            _mockRepository.Setup(repo => repo.GetAllFinesAsync())
+            _mockRepository.Setup(repo => repo.GetFinesAsync(null))
                 .ReturnsAsync(finesEntities);
 
             // Act
@@ -137,7 +138,7 @@ namespace Fines.Tests
         public async Task GetFinesAsync_WhenNoFines_ReturnsEmptyCollection()
         {
             // Arrange
-            _mockRepository.Setup(repo => repo.GetAllFinesAsync())
+            _mockRepository.Setup(repo => repo.GetFinesAsync(null))
                 .ReturnsAsync(new List<FinesEntity>());
 
             // Act
@@ -160,7 +161,7 @@ namespace Fines.Tests
                 new FinesEntity { Id = 4, FineNo = "FN-004", FineDate = DateTime.Now, FineType = FineType.NoInsurance, VehicleId = 4, Vehicle = new VehicleEntity { Id = 4, RegistrationNumber = "REG4" }, VehicleDriverName = "Driver4" },
                 new FinesEntity { Id = 5, FineNo = "FN-005", FineDate = DateTime.Now, FineType = FineType.SeatBeltViolation, VehicleId = 5, Vehicle = new VehicleEntity { Id = 5, RegistrationNumber = "REG5" }, VehicleDriverName = "Driver5" }
             };
-            _mockRepository.Setup(repo => repo.GetAllFinesAsync())
+            _mockRepository.Setup(repo => repo.GetFinesAsync(null))
                 .ReturnsAsync(finesEntities);
 
             // Act
@@ -179,23 +180,11 @@ namespace Fines.Tests
         public async Task GetFinesAsync_WhenRepositoryThrowsException_PropagatesException()
         {
             // Arrange
-            _mockRepository.Setup(repo => repo.GetAllFinesAsync())
+            _mockRepository.Setup(repo => repo.GetFinesAsync(null))
                 .ThrowsAsync(new Exception("Database error"));
 
             // Act & Assert
             await Assert.ThrowsAsync<Exception>(() => _service.GetFinesAsync());
-        }
-
-        [Fact]
-        public async Task GetFinesFilteredByFineTypeAsync_WhenRepositoryThrowsException_PropagatesException()
-        {
-            // Arrange
-            FineType fineType = FineType.Speeding;
-            _mockRepository.Setup(repo => repo.GetFinesFilteredByFineTypeAsync(fineType))
-                .ThrowsAsync(new Exception("Database error"));
-
-            // Act & Assert
-            await Assert.ThrowsAsync<Exception>(() => _service.GetFinesFilteredByFineTypeAsync(fineType));
         }
 
         private static List<FinesEntity> GetSampleFinesEntities()

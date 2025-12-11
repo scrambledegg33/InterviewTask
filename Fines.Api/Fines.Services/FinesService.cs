@@ -13,15 +13,9 @@ public class FinesService : IFinesService
         _finesRepository = finesRepository;
     }
 
-    public async Task<IEnumerable<FinesResponse>> GetFinesAsync()
+    public async Task<IEnumerable<FinesResponse>> GetFinesAsync(FinesFilter? filter = null)
     {
-        var fines = await _finesRepository.GetAllFinesAsync();
-        return fines.Select(MapToResponse);
-    }
-
-    public async Task<IEnumerable<FinesResponse>> GetFinesFilteredByFineTypeAsync(FineType fineType)
-    {
-        var fines = await _finesRepository.GetFinesFilteredByFineTypeAsync(fineType);
+        var fines = await _finesRepository.GetFinesAsync(filter);
         return fines.Select(MapToResponse);
     }
 

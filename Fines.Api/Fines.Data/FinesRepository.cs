@@ -1,4 +1,5 @@
-﻿using Fines.Core.Enums;
+﻿using Fines.Core.Dtos;
+using Fines.Core.Enums;
 using Fines.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,22 +14,28 @@ public class FinesRepository : IFinesRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<FinesEntity>> GetAllFinesAsync()
+    public async Task<IEnumerable<FinesEntity>> GetFinesAsync(FinesFilter? filter = null)
     {
-        var result = await _context.Fines
-            .Include(f => f.Vehicle)
-            .ToListAsync();
+        IQueryable<FinesEntity> query = _context.Fines
+                .Include(f => f.Vehicle)
+                .AsQueryable();
 
-        return result;
+        if (filter?.FineType.HasValue == true)
+        {
+            query = query.Where(f => f.FineType == filter.FineType.Value);
+        }
+
+        if (filter?.FineDate.HasValue == true)
+        {
+            query = query.Where(f => f.FineDate.Date == filter.FineDate.Value.Date);
+        }
+
+        if (!string.IsNullOrWhiteSpace(filter?.VehicleReg))
+        {
+            query = query.Where(f => f.Vehicle.RegistrationNumber == filter.VehicleReg);
+        }
+
+        return await query.ToListAsync();
     }
 
-    public async Task<IEnumerable<FinesEntity>> GetFinesFilteredByFineTypeAsync(FineType finetype)
-    {
-        var result = await _context.Fines
-            .Include(f => f.Vehicle)
-            .Where(f => f.FineType == finetype)
-            .ToListAsync();
-
-        return result;
-    }
 }

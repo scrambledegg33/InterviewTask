@@ -3,6 +3,5 @@ using Fines.Core.Enums;
 
 public interface IFinesService
 {
-    Task<IEnumerable<FinesResponse>> GetFinesAsync();
-    Task<IEnumerable<FinesResponse>> GetFinesFilteredByFineTypeAsync(FineType fineType);
+    Task<IEnumerable<FinesResponse>> GetFinesAsync(FinesFilter? filter = null);
 }
