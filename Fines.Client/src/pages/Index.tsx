@@ -19,12 +19,15 @@ import {
   IconFilterFilled,
 } from "@tabler/icons-react";
 import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Index() {
   const [opened, { toggle }] = useDisclosure(false);
   const { fines, loading, error } = useFines();
 
   const [selectedFineType, setSelectedFineType] = useState("");
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   const fineTypes = [
     { value: "", label: "Any" },
@@ -69,6 +72,13 @@ export default function Index() {
             />
           </Flex>
         </Paper>
+      <Paper shadow="xs" px="xl" py="md" mb="md">
+        <Flex direction="row" gap="md">
+          <a>Date Picker</a>
+          <DatePicker selected={selectedDate} onChange={(selectedDate) => setSelectedDate(selectedDate)} />
+        </Flex>
+      </Paper>
+    
       </Collapse>
 
       <Paper shadow="xs" p="xl">
