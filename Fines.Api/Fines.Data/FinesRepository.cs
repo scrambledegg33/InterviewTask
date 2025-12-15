@@ -18,8 +18,7 @@ public class FinesRepository : IFinesRepository
     {
         IQueryable<FinesEntity> query = _context.Fines
                 .Include(f => f.Vehicle)
-                .Include(f => f.Customer)
-                .AsQueryable();
+                .Include(f => f.Customer);
 
         if (filter?.FineType.HasValue == true)
         {
