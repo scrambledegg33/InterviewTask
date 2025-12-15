@@ -56,7 +56,7 @@ export default function Index() {
 
   return (
     <main>
-      <h2>Index</h2>
+      <h2>Fines Search</h2>
 
       <Button onClick={toggle} mb="md" variant="subtle">
         <Group gap="xs">

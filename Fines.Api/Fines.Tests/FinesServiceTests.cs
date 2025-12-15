@@ -37,7 +37,7 @@ namespace Fines.Tests
         [Theory]
         [InlineData(FineType.Speeding)]
         [InlineData(FineType.RedLightViolation)]
-        public async Task GetFinesFilteredByFineTypeAsync_WhenCalled_ReturnsAllFinesOfAGivenFineType(FineType fineType)
+        public async Task GetFinesAsync_WhenCalledWithFineType_ReturnsAllFinesOfAGivenFineType(FineType fineType)
         {
             // Arrange
             var finesEntities = GetSampleFinesEntities();
@@ -55,26 +55,67 @@ namespace Fines.Tests
             Assert.Equal(expectedCount, finesList.Count);
         }
 
-        //[Theory]
-        //[InlineData("RERG334")]
-        //public async Task GetFinesAsync_WhenVehicleRegIsNotValid_Returns404NotFound(string vehicleReg)
-        //{
-        //    // Arrange
-        //    var finesEntities = GetSampleFinesEntities();
-        //    _mockRepository.Setup(repo => repo.GetFinesAsync(It.Is<FinesFilter>(f => f != null && f.VehicleReg == vehicleReg)))
-        //        .ReturnsAsync([]);
-        //    var filter = new FinesFilter { FineType = fineType };
+        [Theory]
+        [InlineData("2024-01-23")]
+        public async Task GetFinesAsync_WhenCalledWithDate_ReturnsAllFinesOnAGivenDate(DateTime fineDate)
+        {
+            // Arrange
+            var finesEntities = GetSampleFinesEntities();
+            _mockRepository.Setup(repo => repo.GetFinesAsync(It.Is<FinesFilter>(f => f != null && f.FineDate == fineDate)))
+                .ReturnsAsync((FinesFilter? filter) => finesEntities.Where(f => f.FineDate == filter!.FineDate).ToList());
+            var filter = new FinesFilter { FineDate = fineDate };
+            // Act
+            var result = await _service.GetFinesAsync(filter);
+            var finesList = result.ToList();
 
-        //    // Act
-        //    var result = await _service.GetFinesFilteredByFineTypeAsync(fineType);
-        //    var finesList = result.ToList();
+            // Assert
+            Assert.NotNull(finesList);
+            Assert.All(finesList, f => Assert.Equal(fineDate, f.FineDate));
+            var expectedCount = finesEntities.Count(f => f.FineDate == fineDate);
+            Assert.Equal(expectedCount, finesList.Count);
+        }
 
-        //    // Assert
-        //    Assert.NotNull(finesList);
-        //    Assert.All(finesList, f => Assert.Equal(fineType, f.FineType));
-        //    var expectedCount = finesEntities.Count(f => f.FineType == fineType);
-        //    Assert.Equal(expectedCount, finesList.Count);
-        //}
+        [Theory]
+        [InlineData("DEF456")]
+        public async Task GetFinesAsync_WhenCalledVehicleReg_ReturnsAllFinesWithGivenVehicleRegistration(string vehicleReg)
+        {
+            // Arrange
+            var finesEntities = GetSampleFinesEntities();
+            _mockRepository.Setup(repo => repo.GetFinesAsync(It.Is<FinesFilter>(f => f != null && f.VehicleReg == vehicleReg)))
+                .ReturnsAsync((FinesFilter? filter) => finesEntities.Where(f => f.Vehicle.RegistrationNumber == filter!.VehicleReg).ToList());
+            var filter = new FinesFilter { VehicleReg = vehicleReg };
+
+            // Act
+            var result = await _service.GetFinesAsync(filter);
+            var finesList = result.ToList();
+
+            // Assert
+            Assert.NotNull(finesList);
+            Assert.All(finesList, f => Assert.Equal(vehicleReg, f.VehicleRegNo));
+            var expectedCount = finesEntities.Count(f => f.Vehicle.RegistrationNumber == vehicleReg);
+            Assert.Equal(expectedCount, finesList.Count);
+        }
+
+        [Theory]
+        [InlineData(FineType.RedLightViolation, "DEF456")]
+        public async Task GetFinesAsync_WhenCalledWithFineTypeAndVehicleReg_ReturnsAllFinesWithGivenVehicleRegistration(FineType fineType, string vehicleReg)
+        {
+            // Arrange
+            var finesEntities = GetSampleFinesEntities();
+            _mockRepository.Setup(repo => repo.GetFinesAsync(It.Is<FinesFilter>(f => f != null && f.FineType == fineType && f.VehicleReg == vehicleReg)))
+                .ReturnsAsync((FinesFilter? filter) => finesEntities.Where(f => f.FineType == filter!.FineType && f.Vehicle.RegistrationNumber == filter!.VehicleReg).ToList());
+            var filter = new FinesFilter { FineType = fineType, VehicleReg = vehicleReg };
+
+            // Act
+            var result = await _service.GetFinesAsync(filter);
+            var finesList = result.ToList();
+
+            // Assert
+            Assert.NotNull(finesList);
+            Assert.All(finesList, f => Assert.Equal(vehicleReg, f.VehicleRegNo));
+            Assert.All(finesList, f => Assert.Equal(fineType, f.FineType));
+            _mockRepository.Verify(repo => repo.GetFinesAsync(It.Is<FinesFilter>(f => f != null && f.FineType == fineType && f.VehicleReg == vehicleReg)), Times.Once);
+        }
 
         [Fact]
         public async Task GetFinesAsync_WhenCalled_CallsRepositoryOnce()
@@ -199,7 +240,9 @@ namespace Fines.Tests
                     FineType = FineType.Speeding,
                     VehicleId = 1,
                     Vehicle = new VehicleEntity { Id = 1, RegistrationNumber = "ABC123", Make = "Ford", Model = "Focus", Color = "Blue", Year = 2020 },
-                    VehicleDriverName = "John Doe"
+                    VehicleDriverName = "John Doe",
+                    CustomerId = 1,
+                    Customer = new CustomerEntity { Id = 1, FirstName = "John", LastName = "Doe" }
                 },
                 new FinesEntity
                 {
@@ -209,7 +252,9 @@ namespace Fines.Tests
                     FineType = FineType.Parking,
                     VehicleId = 2,
                     Vehicle = new VehicleEntity { Id = 2, RegistrationNumber = "XYZ789", Make = "Volkswagen", Model = "Golf", Color = "Silver", Year = 2021 },
-                    VehicleDriverName = "Jane Smith"
+                    VehicleDriverName = "Jane Smith",
+                    CustomerId = 2,
+                    Customer = new CustomerEntity { Id = 2, FirstName = "Jane", LastName = "Smith" }
                 },
                 new FinesEntity
                 {
@@ -219,7 +264,9 @@ namespace Fines.Tests
                     FineType = FineType.RedLightViolation,
                     VehicleId = 3,
                     Vehicle = new VehicleEntity { Id = 3, RegistrationNumber = "DEF456", Make = "BMW", Model = "3 Series", Color = "Black", Year = 2022 },
-                    VehicleDriverName = "Bob Johnson"
+                    VehicleDriverName = "Bob Johnson",
+                    CustomerId = 3,
+                    Customer = new CustomerEntity { Id = 3, FirstName = "Bob", LastName = "Johnson" }
                 },
                 new FinesEntity
                 {
@@ -229,7 +276,9 @@ namespace Fines.Tests
                     FineType = FineType.SeatBeltViolation,
                     VehicleId = 4,
                     Vehicle = new VehicleEntity { Id = 4, RegistrationNumber = "RRR111", Make = "Honda", Model = "Jazz", Color = "White", Year = 2012 },
-                    VehicleDriverName = "Ryan Jones"
+                    VehicleDriverName = "Ryan Jones",
+                    CustomerId = 4,
+                    Customer = new CustomerEntity { Id = 4, FirstName = "Ryan", LastName = "Jones" }
                 },
                 new FinesEntity
                 {
@@ -239,7 +288,9 @@ namespace Fines.Tests
                     FineType = FineType.Speeding,
                     VehicleId = 5,
                     Vehicle = new VehicleEntity { Id = 5, RegistrationNumber = "WER789", Make = "Dacia", Model = "Sandero", Color = "Gold", Year = 2023 },
-                    VehicleDriverName = "Jeff Baker"
+                    VehicleDriverName = "Jeff Baker",
+                    CustomerId = 5,
+                    Customer = new CustomerEntity { Id = 5, FirstName = "Jeff", LastName = "Baker" }
                 }
             };
         }
