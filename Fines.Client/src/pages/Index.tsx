@@ -24,10 +24,16 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function Index() {
   const [opened, { toggle }] = useDisclosure(false);
-  const { fines, loading, error } = useFines();
-
+  
   const [selectedFineType, setSelectedFineType] = useState("");
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedVehicleReg, setSelectedVehicleReg] = useState("");
+
+  const [appliedFineType, setAppliedFineType] = useState<string | undefined>(undefined);
+  const [appliedFineDate, setAppliedFineDate] = useState<Date | null>(null);
+  const [appliedVehicleReg, setAppliedVehicleReg] = useState<string | undefined>(undefined);
+
+  const { fines, loading, error } = useFines(appliedFineType, appliedFineDate, appliedVehicleReg);
 
   const fineTypes = [
     { value: "", label: "Any" },
@@ -60,25 +66,58 @@ export default function Index() {
       </Button>
       <Collapse in={opened}>
         <Paper shadow="xs" px="xl" py="md" mb="md">
-          <Flex direction="row" gap="md">
-            <NativeSelect
-              flex="0 1 20rem"
-              data={fineTypes}
-              value={selectedFineType}
-              onChange={(event) =>
-                setSelectedFineType(event.currentTarget.value)
-              }
-              label="Fine Type"
-            />
+          <Flex direction="column" gap="md">
+            <Flex direction="row" gap="md" align="center">
+              <Text size="sm">Fine Type</Text>
+              <NativeSelect
+                flex="0 1 20rem"
+                data={fineTypes}
+                value={selectedFineType}
+                onChange={(event) => setSelectedFineType(event.currentTarget.value)}
+              />
+            </Flex>
+
+            <Flex direction="row" gap="md" align="center">
+              <Text size="sm">Date</Text>
+              <DatePicker selected={selectedDate} onChange={(s) => setSelectedDate(s)} />
+            </Flex>
+
+            <Flex direction="row" gap="md" align="center">
+              <Text size="sm">Vehicle Registration</Text>
+              <input
+                type="text"
+                value={selectedVehicleReg}
+                onChange={(e) => setSelectedVehicleReg(e.target.value)}
+              />
+            </Flex>
+
+            <Flex gap="sm">
+              <Button
+                onClick={() => {
+                  setAppliedFineType(selectedFineType || undefined);
+                  setAppliedFineDate(selectedDate);
+                  setAppliedVehicleReg(selectedVehicleReg || undefined);
+                }}
+              >
+                Apply
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSelectedFineType("");
+                  setSelectedDate(null);
+                  setSelectedVehicleReg("");
+                  setAppliedFineType(undefined);
+                  setAppliedFineDate(null);
+                  setAppliedVehicleReg(undefined);
+                }}
+              >
+                Clear
+              </Button>
+            </Flex>
           </Flex>
         </Paper>
-      <Paper shadow="xs" px="xl" py="md" mb="md">
-        <Flex direction="row" gap="md">
-          <a>Date Picker</a>
-          <DatePicker selected={selectedDate} onChange={(selectedDate) => setSelectedDate(selectedDate)} />
-        </Flex>
-      </Paper>
-    
+      
       </Collapse>
 
       <Paper shadow="xs" p="xl">
